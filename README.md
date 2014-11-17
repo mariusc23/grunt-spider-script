@@ -1,4 +1,4 @@
-# grunt-spider-script v0.0.3
+# grunt-spider-script v0.0.4
 
 > Compile spider script into javascript.
 
@@ -130,7 +130,9 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
- * 2014-11-17   v0.0.2   Add support for source maps.  
+ * 2014-11-17   v0.0.4   Make spider-script dependency less strict
+ * 2014-11-17   v0.0.3   Support concatenation and file expanding
+ * 2014-11-17   v0.0.2   Add support for source maps and use strict mode
  * 2014-11-17   v0.0.1   Initial release.  
 
 ## License
