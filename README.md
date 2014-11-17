@@ -1,4 +1,4 @@
-# grunt-spider-script v0.0.1
+# grunt-spider-script v0.0.2
 
 > Compile spider script into javascript.
 
