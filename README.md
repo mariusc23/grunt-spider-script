@@ -42,6 +42,18 @@ Type: `String`
 
 Prepend the specified string to the output file. Useful for licensing information.
 
+#### options.sourcemaps
+Type: `Boolean`  
+Default: `true`    
+
+Generates sourcemaps next to compiled javascript files.
+
+#### options.strict
+Type: `Boolean`  
+Default: `true`    
+
+Determines if "use strict" should be enforced.
+
 ### Usage Examples
 
 #### Default Options
@@ -78,7 +90,8 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
- * 2014-11-17   v0.0.1   Initial release.
+ * 2014-11-17   v0.0.2   Add support for source maps.  
+ * 2014-11-17   v0.0.1   Initial release.  
 
 ## License
 Copyright (c) 2014 Marius Craciunoiu. Licensed under the MIT license.

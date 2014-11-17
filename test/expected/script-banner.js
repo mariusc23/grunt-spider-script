@@ -1,2 +1,5 @@
 // Banner
-console.log("Hello world!");
+"use strict;";
+(function () {
+    console.log("Hello world!");
+}());

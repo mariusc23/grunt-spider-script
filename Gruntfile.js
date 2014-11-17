@@ -34,6 +34,9 @@ module.exports = function (grunt) {
     // Configuration to be run (and then tested).
     spider_script: {
       compile: {
+        options: {
+          sourcemap: false
+        },
         files: {
           'test/tmp/script.js': ['test/fixtures/script.spider']
         }
@@ -45,10 +48,19 @@ module.exports = function (grunt) {
       },
       compileBanner: {
         options: {
-          banner: '// Banner'
+          banner: '// Banner',
+          sourcemap: false
         },
         files: {
           'test/tmp/script-banner.js': ['test/fixtures/script.spider']
+        }
+      },
+      compileSourceMap: {
+        options: {
+          sourcemap: true
+        },
+        files: {
+          'test/tmp/script-sourcemap.js': ['test/fixtures/sourcemap.spider']
         }
       }
     },
@@ -65,7 +77,7 @@ module.exports = function (grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'spider_script:compile', 'spider_script:compileBanner', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'spider_script:compile', 'spider_script:compileBanner', 'spider_script:compileSourceMap', 'nodeunit']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);

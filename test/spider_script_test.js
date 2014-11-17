@@ -32,7 +32,7 @@ exports.spider_script = {
 
     var actual = grunt.file.read('test/tmp/script.js');
     var expected = grunt.file.read('test/expected/script.js');
-    test.equal(actual, expected, 'should describe what the default behavior is.');
+    test.equal(actual, expected, 'should compile.');
 
     test.done();
   },
@@ -40,8 +40,21 @@ exports.spider_script = {
     test.expect(1);
 
     var actual = grunt.file.read('test/tmp/script-banner.js');
-    var expected = grunt.file.read('test/tmp/script-banner.js');
-    test.equal(actual, expected, 'should describe what the banner behavior is.');
+    var expected = grunt.file.read('test/expected/script-banner.js');
+    test.equal(actual, expected, 'should add banner.');
+
+    test.done();
+  },
+  compileSourceMap: function (test) {
+    test.expect(2);
+
+    var actual = grunt.file.read('test/tmp/script-sourcemap.js');
+    var expected = grunt.file.read('test/expected/script-sourcemap.js');
+    test.equal(actual, expected, 'should compile with sourcemap url appended.');
+
+    var actualSourceMap = grunt.file.read('test/tmp/script-sourcemap.map');
+    var expectedSourceMap = grunt.file.read('test/expected/script-sourcemap.map');
+    test.equal(actualSourceMap, expectedSourceMap, 'should include sourcemap.');
 
     test.done();
   }

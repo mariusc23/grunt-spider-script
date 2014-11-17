@@ -31,6 +31,8 @@ module.exports = function (grunt) {
 
     async.eachLimit(this.files, numCPUs, function (file, next) {
       var src = file.src[0];
+      var errors = [];
+      var sourceMapDest = file.dest.replace('.js', '.map');
 
       if (typeof src !== 'string') {
         src = file.orig.src[0];
@@ -46,8 +48,17 @@ module.exports = function (grunt) {
         grunt.file.write(file.dest, '');
       }
 
-      var errors = [];
-      var result = spider.compile(grunt.file.read(src), false, errors);
+      // Default some options to true
+      options.sourcemap = options.sourcemap !== false;
+      options.strict = options.strict !== false;
+
+      if (options.sourcemap) {
+        var result = spider.compile(grunt.file.read(src), false, errors, src, sourceMapDest, true, options.strict);
+      } else {
+        var result = {
+          code: spider.compile(grunt.file.read(src), false, errors, false, sourceMapDest, true, options.strict)
+        };
+      };
 
       if (errors.length) {
         for (var i = 0; i < errors.length; i++) {
@@ -57,11 +68,16 @@ module.exports = function (grunt) {
         };
       };
 
-      grunt.file.write(file.dest, result);
-      grunt.verbose.writeln('File ' + chalk.cyan(file.dest) + ' created.');
+      grunt.file.write(file.dest, result.code);
+      grunt.verbose.writeln('Compiled file ' + chalk.cyan(file.dest) + ' created.');
+
+      if (options.sourcemap !== false) {
+        grunt.file.write(sourceMapDest, result.map);
+        grunt.verbose.writeln('Source map ' + chalk.cyan(sourceMapDest) + ' created.');
+      };
 
       if (banner) {
-        grunt.verbose.writeln('Writing CSS banner for ' + chalk.cyan(file.dest));
+        grunt.verbose.writeln('Writing banner for ' + chalk.cyan(file.dest));
         grunt.file.write(file.dest, banner + grunt.util.linefeed + grunt.file.read(file.dest));
       };
 
