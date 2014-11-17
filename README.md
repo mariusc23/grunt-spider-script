@@ -1,4 +1,4 @@
-# grunt-spider-script v0.0.2
+# grunt-spider-script v0.0.3
 
 > Compile spider script into javascript.
 
@@ -42,7 +42,7 @@ Type: `String`
 
 Prepend the specified string to the output file. Useful for licensing information.
 
-#### options.sourcemaps
+#### options.sourcemap
 Type: `Boolean`  
 Default: `true`    
 
@@ -54,18 +54,54 @@ Default: `true`
 
 Determines if "use strict" should be enforced.
 
+#### options.separator
+Type: `String`  
+Default: grunt linefeed    
+
+Concatenated files will be joined with this string.
+
 ### Usage Examples
 
-#### Default Options
+#### Single File
+
+```js
+grunt.initConfig({
+  spider_script: {
+    files: {
+      'js/script.js': 'spider/script.spider'
+    }
+  }
+})
+```
+
+#### Concatenate Files
+
+Note: sourcemaps will be disabled.
+
+```js
+grunt.initConfig({
+  spider_script: {
+    files: {
+      'js/script.js': ['spider/script.spider', 'spider/script2.spider']
+    }
+  }
+})
+```
+
+#### Multiple files
 
 ```js
 grunt.initConfig({
   spider_script: {
     options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
+    files: [{
+      expand: true,
+      cwd: 'spiders',
+      src: ['*.spider'],
+      dest: 'js/',
+      ext: '.js'
+    }]
+  }
 })
 ```
 
@@ -78,9 +114,13 @@ grunt.initConfig({
     options: {
       banner: '// JavaScript comment here'
     },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
+    files: [{
+      expand: true,
+      cwd: 'spider',
+      src: ['*.spider'],
+      dest: '../js',
+      ext: '.spider'
+    }]
   },
 })
 ```

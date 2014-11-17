@@ -36,6 +36,36 @@ exports.spider_script = {
 
     test.done();
   },
+  compileConcat: function (test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('test/tmp/script-concat.js');
+    var expected = grunt.file.read('test/expected/script-concat.js');
+    test.equal(actual, expected, 'should concat files.');
+
+    test.done();
+  },
+  compileExpand: function (test) {
+    test.expect(4);
+
+    var actual = grunt.file.read('test/tmp/compile.js');
+    var expected = grunt.file.read('test/expected/compile.js');
+    test.equal(actual, expected, 'expanded should compile first file.');
+
+    var actualSecond = grunt.file.read('test/tmp/compile-sourcemap.js');
+    var expectedSecond = grunt.file.read('test/expected/compile-sourcemap.js');
+    test.equal(actualSecond, expectedSecond, 'expanded should compile second file.');
+
+    var actualSourceMap = grunt.file.read('test/tmp/compile.map');
+    var expectedSourceMap = grunt.file.read('test/expected/compile.map');
+    test.equal(actualSourceMap, expectedSourceMap, 'should include sourcemap.');
+
+    var actualSecondSourceMap = grunt.file.read('test/tmp/compile-sourcemap.map');
+    var expectedSecondSourceMap = grunt.file.read('test/expected/compile-sourcemap.map');
+    test.equal(actualSecondSourceMap, expectedSecondSourceMap, 'should include second sourcemap.');
+
+    test.done();
+  },
   compileBanner: function (test) {
     test.expect(1);
 

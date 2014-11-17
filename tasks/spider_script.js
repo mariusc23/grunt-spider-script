@@ -30,33 +30,47 @@ module.exports = function (grunt) {
     passedArgs = dargs(options, ['bundleExec']);
 
     async.eachLimit(this.files, numCPUs, function (file, next) {
+      // Default options
+      var options = this.options({
+        sourcemap: true,
+        strict: true,
+        separator: grunt.util.linefeed
+      });
+
+      options.separator = grunt.util.normalizelf(options.separator);
+      options.sourcemap = file.src.length > 1 ? false : options.sourcemap; // disable sourcemaps if concatenating files
+
       var src = file.src[0];
-      var errors = [];
-      var sourceMapDest = file.dest.replace('.js', '.map');
 
       if (typeof src !== 'string') {
         src = file.orig.src[0];
-      }
+      };
 
-      if (!grunt.file.exists(src)) {
-        grunt.log.warn('Source file "' + src + '" not found.');
-        return next();
-      }
+      // Concat files if necessary
+      var contents = file.src.filter(function(filepath) {
+        if (!grunt.file.exists(filepath)) {
+          grunt.log.warn('Source file "' + filepath + '" not found.');
+          return false;
+        } else {
+          return true;
+        }
+      }).map(function(filepath) {
+        return grunt.file.read(filepath);
+      }).join(options.separator);
 
       // Make sure grunt creates the destination folders if they don't exist
       if (!grunt.file.exists(file.dest)) {
         grunt.file.write(file.dest, '');
       }
 
-      // Default some options to true
-      options.sourcemap = options.sourcemap !== false;
-      options.strict = options.strict !== false;
+      var errors = [];
+      var sourceMapDest = file.dest.replace(file.orig && file.orig.ext ? file.orig.ext : '.js', '.map');
 
       if (options.sourcemap) {
-        var result = spider.compile(grunt.file.read(src), false, errors, src, sourceMapDest, true, options.strict);
+        var result = spider.compile(contents, false, errors, src, sourceMapDest, true, options.strict);
       } else {
         var result = {
-          code: spider.compile(grunt.file.read(src), false, errors, false, sourceMapDest, true, options.strict)
+          code: spider.compile(contents, false, errors, false, sourceMapDest, true, options.strict)
         };
       };
 
@@ -64,7 +78,7 @@ module.exports = function (grunt) {
         for (var i = 0; i < errors.length; i++) {
           var startLoc = (errors[i].loc && errors[i].loc.start) ? ('Line: ' + errors[i].loc.start.line + ', Column: ' + errors[i].loc.start.column) : '';
           var endLoc = (errors[i].loc && errors[i].loc.end) ? ('Line: ' + errors[i].loc.end.line + ', Column: ' + errors[i].loc.end.column) : '';
-          grunt.warn([errors[i].type + ':' , errors[i].message, 'at', src, 'on', startLoc, endLoc].join(' '));
+          grunt.warn([errors[i].type + ':' , errors[i].message, 'at', src, 'on', startLoc, endLoc].join(' ')); // FIXME: this will be wrong if concatenating
         };
       };
 
@@ -82,7 +96,7 @@ module.exports = function (grunt) {
       };
 
       next();
-    }, cb);
+    }.bind(this), cb);
 
   });
 };

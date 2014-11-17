@@ -3,4 +3,4 @@
     console.log("Hello world!");
 }());
 
-//# sourceMappingURL=test/tmp/script.map
+//# sourceMappingURL=test/tmp/compile.map

@@ -34,33 +34,49 @@ module.exports = function (grunt) {
     // Configuration to be run (and then tested).
     spider_script: {
       compile: {
-        options: {
-          sourcemap: false
-        },
         files: {
-          'test/tmp/script.js': ['test/fixtures/script.spider']
+          'test/tmp/script.js': 'test/fixtures/compile.spider'
         }
       },
-      compileError: { // not run, here to debug
+
+      compileConcat: {
         files: {
-          'test/tmp/script-error.js': ['test/fixtures/error.spider']
+          'test/tmp/script-concat.js': ['test/fixtures/compile.spider', 'test/fixtures/compile-sourcemap.spider']
         }
       },
+
+      compileExpand: {
+        files: [{
+          expand: true,
+          cwd: 'test/fixtures',
+          src: ['*.spider'],
+          dest: 'test/tmp/',
+          ext: '.js'
+        }]
+      },
+
+      // compileError: { // not run, here to debug
+      //   files: {
+      //     'test/tmp/script-error.js': ['test/fixtures/compile-error.spiderz']
+      //   }
+      // },
+
       compileBanner: {
         options: {
           banner: '// Banner',
           sourcemap: false
         },
         files: {
-          'test/tmp/script-banner.js': ['test/fixtures/script.spider']
+          'test/tmp/script-banner.js': ['test/fixtures/compile.spider']
         }
       },
+
       compileSourceMap: {
         options: {
           sourcemap: true
         },
         files: {
-          'test/tmp/script-sourcemap.js': ['test/fixtures/sourcemap.spider']
+          'test/tmp/script-sourcemap.js': ['test/fixtures/compile-sourcemap.spider']
         }
       }
     },
@@ -77,7 +93,7 @@ module.exports = function (grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'spider_script:compile', 'spider_script:compileBanner', 'spider_script:compileSourceMap', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'spider_script', 'nodeunit']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);
