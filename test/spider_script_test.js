@@ -50,19 +50,19 @@ exports.spider_script = {
 
     var actual = grunt.file.read('test/tmp/compile.js');
     var expected = grunt.file.read('test/expected/compile.js');
-    test.equal(actual, expected, 'expanded should compile first file.');
+    test.equal(actual, expected, 'should compile first expanded file.');
 
     var actualSecond = grunt.file.read('test/tmp/compile-sourcemap.js');
     var expectedSecond = grunt.file.read('test/expected/compile-sourcemap.js');
-    test.equal(actualSecond, expectedSecond, 'expanded should compile second file.');
+    test.equal(actualSecond, expectedSecond, 'should compile second expanded file.');
 
     var actualSourceMap = grunt.file.read('test/tmp/compile.map');
     var expectedSourceMap = grunt.file.read('test/expected/compile.map');
-    test.equal(actualSourceMap, expectedSourceMap, 'should include sourcemap.');
+    test.equal(actualSourceMap, expectedSourceMap, 'should include sourcemap for the first file.');
 
     var actualSecondSourceMap = grunt.file.read('test/tmp/compile-sourcemap.map');
     var expectedSecondSourceMap = grunt.file.read('test/expected/compile-sourcemap.map');
-    test.equal(actualSecondSourceMap, expectedSecondSourceMap, 'should include second sourcemap.');
+    test.equal(actualSecondSourceMap, expectedSecondSourceMap, 'should include sourcemap for the second.');
 
     test.done();
   },
@@ -80,7 +80,7 @@ exports.spider_script = {
 
     var actual = grunt.file.read('test/tmp/script-sourcemap.js');
     var expected = grunt.file.read('test/expected/script-sourcemap.js');
-    test.equal(actual, expected, 'should compile with sourcemap url appended.');
+    test.equal(actual, expected, 'should compile with sourcemap url provided.');
 
     var actualSourceMap = grunt.file.read('test/tmp/script-sourcemap.map');
     var expectedSourceMap = grunt.file.read('test/expected/script-sourcemap.map');

@@ -73,7 +73,7 @@ module.exports = function (grunt) {
 
       compileSourceMap: {
         options: {
-          sourcemap: true
+          sourcemap: 'test/fixtures/compile-sourcemap.spider'
         },
         files: {
           'test/tmp/script-sourcemap.js': ['test/fixtures/compile-sourcemap.spider']

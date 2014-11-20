@@ -1,4 +1,4 @@
-# grunt-spider-script v0.0.4
+# grunt-spider-script v0.0.5
 
 > Compile spider script into javascript.
 
@@ -43,10 +43,10 @@ Type: `String`
 Prepend the specified string to the output file. Useful for licensing information.
 
 #### options.sourcemap
-Type: `Boolean`  
+Type: `Boolean, String`  
 Default: `true`    
 
-Generates sourcemaps next to compiled javascript files.
+Generates sourcemaps next to compiled javascript files. If a string is provided, it will be used as the source file to generate the sourcemap from.
 
 #### options.strict
 Type: `Boolean`  
@@ -130,6 +130,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+ * 2014-11-19   v0.0.5   Update spider-script. Allow custom sourcemap source file.
  * 2014-11-17   v0.0.4   Make spider-script dependency less strict
  * 2014-11-17   v0.0.3   Support concatenation and file expanding
  * 2014-11-17   v0.0.2   Add support for source maps and use strict mode
