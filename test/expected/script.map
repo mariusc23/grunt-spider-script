@@ -1,1 +1,1 @@
-{"version":3,"sources":["test/fixtures/compile.spider"],"names":["console","log"],"mappings":";;IAAEA,OAAF,CAAUC,GAAV,C,cAAA,E"}
+{"version":3,"sources":["test/fixtures/compile.spider"],"names":["console","Node","log"],"mappings":";;IAAEA,OAAFC,CAAUC,GAAVD,C,cAAAA,E"}

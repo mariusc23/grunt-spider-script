@@ -1,4 +1,4 @@
-"use strict;";
+"use strict";
 (function () {
     var a = "Hello world!";
     var b = "Hi world!";

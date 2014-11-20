@@ -1,1 +1,1 @@
-{"version":3,"sources":["test/fixtures/compile-sourcemap.spider"],"names":["a","b"],"mappings":";;IAAA,IAAIA,CAAA,G,cAAJ,C;IACA,IAAIC,CAAA,G,WAAJ,C"}
+{"version":3,"sources":["test/fixtures/compile-sourcemap.spider"],"names":["Node","a","b"],"mappings":";;IAAAA,IAAIC,CAAAD,G,cAAJA,C;IACAA,IAAIE,CAAAF,G,WAAJA,C"}

@@ -65,9 +65,7 @@ module.exports = function (grunt) {
       if (options.sourcemap) {
         var result = spider.compile(contents, false, errors, src, sourceMapDest, true, options.strict);
       } else {
-        var result = {
-          code: spider.compile(contents, false, errors, false, sourceMapDest, true, options.strict)
-        };
+        var result = spider.compile(contents, false, errors, false, sourceMapDest, true, options.strict)
       };
 
       if (errors.length) {
