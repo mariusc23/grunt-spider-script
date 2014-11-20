@@ -9,7 +9,6 @@
 'use strict';
 var spider = require('spider-script');
 var path = require('path');
-var dargs = require('dargs');
 var numCPUs = require('os').cpus().length || 1;
 var async = require('async');
 var chalk = require('chalk');
@@ -19,15 +18,12 @@ module.exports = function (grunt) {
     var cb = this.async();
     var options = this.options();
     var banner;
-    var passedArgs;
 
     // Unset banner option if set
     if (options.banner) {
       banner = options.banner;
       delete options.banner;
     }
-
-    passedArgs = dargs(options, ['bundleExec']);
 
     async.eachLimit(this.files, numCPUs, function (file, next) {
       // Default options
