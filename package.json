@@ -1,6 +1,6 @@
 {
   "name": "grunt-spider-script",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Compile spider script into javascript.",
   "homepage": "https://github.com/mariusc23/grunt-spider-script",
   "repository": "git@github.com:mariusc23/grunt-spider-script.git",
