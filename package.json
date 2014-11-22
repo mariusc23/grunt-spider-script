@@ -1,6 +1,6 @@
 {
   "name": "grunt-spider-script",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "description": "Compile spider script into javascript.",
   "homepage": "https://github.com/mariusc23/grunt-spider-script",
   "repository": "git@github.com:mariusc23/grunt-spider-script.git",
@@ -31,6 +31,6 @@
   "dependencies": {
     "async": "^0.9.0",
     "chalk": "^0.5.1",
-    "spider-script": "^0.0.5"
+    "spider-script": "^0.0.7"
   }
 }
