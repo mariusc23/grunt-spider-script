@@ -1,5 +1,7 @@
 # grunt-spider-script v0.0.7
 
+[![Circle CI](https://circleci.com/gh/mariusc23/grunt-spider-script.svg?style=shield&circle-token=8664329fd963e0e75b8215039cbedc30a971a981)](https://circleci.com/gh/mariusc23/grunt-spider-script)
+
 > Compile spider script into javascript.
 
 ## Getting Started
