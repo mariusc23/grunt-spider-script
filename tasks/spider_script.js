@@ -7,7 +7,6 @@
  */
 
 'use strict';
-var traceur = require('traceur');
 var spider = require('spider-script');
 var numCPUs = require('os').cpus().length || 1;
 var async = require('async');

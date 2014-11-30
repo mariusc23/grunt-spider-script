@@ -1,4 +1,4 @@
-# grunt-spider-script v0.0.8
+# grunt-spider-script v0.0.9
 
 [![Circle CI](https://circleci.com/gh/mariusc23/grunt-spider-script.svg?style=shield&circle-token=8664329fd963e0e75b8215039cbedc30a971a981)](https://circleci.com/gh/mariusc23/grunt-spider-script)
 
@@ -128,6 +128,7 @@ grunt.initConfig({
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+ * 2014-11-29   v0.0.9   Remove traceur dependency.
  * 2014-11-29   v0.0.8   Update spider-script to spider-script 0.1.3. Add option to compile for ES5/6. Remove banner option.
  * 2014-11-19   v0.0.7   Update spider-script to spider-script 0.0.7.
  * 2014-11-19   v0.0.5   Update spider-script. Allow custom sourcemap source file.
