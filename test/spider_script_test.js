@@ -36,6 +36,28 @@ exports.spider_script = {
 
     test.done();
   },
+  compileES6: function (test) {
+    test.expect(2);
+
+    var actual = grunt.file.read('test/tmp/ecma-script-6.js');
+    var expected = grunt.file.read('test/expected/ecma-script-6.js');
+    test.equal(actual, expected, 'should compile ES6');
+
+    var actualSourceMap = grunt.file.read('test/tmp/ecma-script-6.map');
+    var expectedSourceMap = grunt.file.read('test/expected/ecma-script-6.map');
+    test.equal(actualSourceMap, expectedSourceMap, 'should compile ES6 source map');
+
+    test.done();
+  },
+  compileUnstrict: function (test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('test/tmp/unstrict.js');
+    var expected = grunt.file.read('test/expected/unstrict.js');
+    test.equal(actual, expected, 'should compile without "use strict" enforced');
+
+    test.done();
+  },
   compileConcat: function (test) {
     test.expect(1);
 
@@ -63,15 +85,6 @@ exports.spider_script = {
     var actualSecondSourceMap = grunt.file.read('test/tmp/compile-sourcemap.map');
     var expectedSecondSourceMap = grunt.file.read('test/expected/compile-sourcemap.map');
     test.equal(actualSecondSourceMap, expectedSecondSourceMap, 'should include sourcemap for the second.');
-
-    test.done();
-  },
-  compileBanner: function (test) {
-    test.expect(1);
-
-    var actual = grunt.file.read('test/tmp/script-banner.js');
-    var expected = grunt.file.read('test/expected/script-banner.js');
-    test.equal(actual, expected, 'should add banner.');
 
     test.done();
   },

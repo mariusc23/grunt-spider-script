@@ -1,6 +1,7 @@
-"use strict";
-(function () {
-    console.log("Hello world!");
-}());
+$traceurRuntime.ModuleStore.getAnonymousModule(function() {
+  "use strict";
+  console.log("Hello world!");
+  return {};
+});
 
-//# sourceMappingURL=test/tmp/script.map
+//# sourceMappingURL=compile.map

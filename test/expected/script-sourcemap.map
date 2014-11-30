@@ -1,1 +1,1 @@
-{"version":3,"sources":["test/fixtures/compile-sourcemap.spider"],"names":["Node","a","b"],"mappings":";;IAAAA,IAAIC,CAAAD,G,cAAJA,C;IACAA,IAAIE,CAAAF,G,WAAJA,C"}
+{"version":3,"sources":["test/fixtures/compile-sourcemap.spider"],"names":["Node","a","b"],"mappings":"AAAAA,0BAAAA,mBAAAA,CAAAA;;AAAAA,AAAIC,IAAAA,CAAAA,CAAAA,kBAAJD;AACAA,AAAIE,IAAAA,CAAAA,CAAAA,eAAJF;AADAA,WAAAA;CACAA,CAAAA;AAAAA"}

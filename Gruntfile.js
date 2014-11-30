@@ -39,6 +39,25 @@ module.exports = function (grunt) {
         }
       },
 
+      compileES6: {
+        options: {
+          target: 'ES6'
+        },
+        files: {
+          'test/tmp/ecma-script-6.js': 'test/fixtures/compile.spider'
+        }
+      },
+
+      compileUnstrict: {
+        options: {
+          target: 'ES6',
+          strict: false
+        },
+        files: {
+          'test/tmp/unstrict.js': 'test/fixtures/compile.spider'
+        }
+      },
+
       compileConcat: {
         files: {
           'test/tmp/script-concat.js': ['test/fixtures/compile.spider', 'test/fixtures/compile-sourcemap.spider']
@@ -61,19 +80,9 @@ module.exports = function (grunt) {
       //   }
       // },
 
-      compileBanner: {
-        options: {
-          banner: '// Banner',
-          sourcemap: false
-        },
-        files: {
-          'test/tmp/script-banner.js': ['test/fixtures/compile.spider']
-        }
-      },
-
       compileSourceMap: {
         options: {
-          sourcemap: 'test/fixtures/compile-sourcemap.spider'
+          sourcemap: true
         },
         files: {
           'test/tmp/script-sourcemap.js': ['test/fixtures/compile-sourcemap.spider']
